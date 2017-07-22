@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="sideNav">
+    <v-navigation-drawer v-model="sideNav" temporary>
       <v-list>
         <v-list-tile>
           <v-list-tile-action>
