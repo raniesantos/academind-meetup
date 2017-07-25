@@ -10,8 +10,8 @@
     </v-layout>
     <v-layout row wrap class="mt-2">
       <v-flex xs12>
-        <v-carousel>
-          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id">
+        <v-carousel style="cursor: pointer;">
+          <v-carousel-item v-for="meetup in meetups" :src="meetup.imageUrl" :key="meetup.id" @click="meetupShow(meetup.id)">
             <div class="title">{{ meetup.title }}</div>
           </v-carousel-item>
         </v-carousel>
@@ -33,6 +33,11 @@
           { imageUrl: 'http://www.itowns-project.org/images/sample_itowns.jpg', id: 'sadghjkl', title: 'meetup here' },
           { imageUrl: 'http://spotify.github.io/HubFramework/resources/getting-started-tokyo.jpg', id: '37689', title: 'meetup there' }
         ]
+      }
+    },
+    methods: {
+      meetupShow (id) {
+        this.$router.push('/meetups/' + id)
       }
     }
   }

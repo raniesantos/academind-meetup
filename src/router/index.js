@@ -20,6 +20,10 @@ export default new Router({
       component: require('@/components/Meetup/Create')
     },
     {
+      path: '/meetups/:id',
+      component: require('@/components/Meetup/Show')
+    },
+    {
       path: '/profile',
       component: require('@/components/User/Profile')
     },
