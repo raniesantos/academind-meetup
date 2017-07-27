@@ -21,6 +21,7 @@ export default new Router({
     },
     {
       path: '/meetups/:id',
+      props: true,
       component: require('@/components/Meetup/Show')
     },
     {

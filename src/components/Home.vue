@@ -26,14 +26,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
-    data () {
-      return {
-        meetups: [
-          { imageUrl: 'http://www.itowns-project.org/images/sample_itowns.jpg', id: 'sadghjkl', title: 'meetup here' },
-          { imageUrl: 'http://spotify.github.io/HubFramework/resources/getting-started-tokyo.jpg', id: '37689', title: 'meetup there' }
-        ]
-      }
+    computed: {
+      ...mapGetters({
+        meetups: 'featuredMeetups'
+      })
     },
     methods: {
       meetupShow (id) {

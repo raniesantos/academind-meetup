@@ -4,11 +4,11 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            <h6 class="primary--text">meetup title</h6>
+            <h6 class="primary--text">{{ meetup.title }}</h6>
           </v-card-title>
-          <v-card-media src="http://www.itowns-project.org/images/sample_itowns.jpg" height="400px"></v-card-media>
+          <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>
           <v-card-text>
-            <div class="info--text">july 22 - here</div>
+            <div class="info--text">{{ meetup.date }}</div>
             <div>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -30,9 +30,10 @@
 
 <script>
   export default {
-    data () {
-      return {
-        // x
+    props: ['id'],
+    computed: {
+      meetup () {
+        return this.$store.getters.loadedMeetup(this.id)
       }
     }
   }
