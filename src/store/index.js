@@ -10,13 +10,17 @@ export default new Vuex.Store({
         imageUrl: 'http://www.itowns-project.org/images/sample_itowns.jpg',
         id: 'sadghjkl',
         title: 'meetup here',
-        date: '2017-07-17'
+        date: new Date(),
+        location: 'New York',
+        description: 'Lorem ipsum dolor sit amet.'
       },
       {
         imageUrl: 'http://spotify.github.io/HubFramework/resources/getting-started-tokyo.jpg',
         id: '37689',
         title: 'meetup there',
-        date: '2017-07-17'
+        date: new Date(),
+        location: 'Paris',
+        description: 'Consectetur adipisicing elit velit, quasi!'
       }
     ],
     user: {
