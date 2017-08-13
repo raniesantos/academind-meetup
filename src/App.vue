@@ -32,37 +32,19 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+  import menu from './utils/menu'
+
   export default {
     data () {
       return {
-        sideNav: false,
-        menuItems: [
-          {
-            icon: 'supervisor_account',
-            title: 'View Meetups',
-            link: '/meetups'
-          },
-          {
-            icon: 'room',
-            title: 'Organize Meetup',
-            link: '/meetups/create'
-          },
-          {
-            icon: 'person',
-            title: 'Profile',
-            link: '/profile'
-          },
-          {
-            icon: 'face',
-            title: 'Sign up',
-            link: '/signup'
-          },
-          {
-            icon: 'lock_open',
-            title: 'Sign in',
-            link: '/signin'
-          }
-        ]
+        sideNav: false
+      }
+    },
+    computed: {
+      ...mapGetters(['authCheck']),
+      menuItems () {
+        return (this.authCheck ? menu.auth : menu.guest)
       }
     }
   }

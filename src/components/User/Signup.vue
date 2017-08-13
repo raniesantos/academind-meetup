@@ -41,6 +41,8 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
+
   export default {
     data () {
       return {
@@ -50,14 +52,22 @@
       }
     },
     computed: {
+      ...mapState(['user']),
       comparePasswords () {
         return (this.password !== this.confirm ? 'Passwords do not match' : '')
       }
     },
     methods: {
+      ...mapActions(['firebaseSignup']),
       onSubmitSignup () {
-        // x
-        console.log(this.$data)
+        this.firebaseSignup({ email: this.email, password: this.password })
+      }
+    },
+    watch: {
+      user (value) {
+        if (value !== null && value !== undefined) {
+          this.$router.push('/')
+        }
       }
     }
   }
