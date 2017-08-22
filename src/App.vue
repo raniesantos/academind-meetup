@@ -8,6 +8,12 @@
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
+        <v-list-tile v-if="authCheck" @click="onClickSignout">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Sign out</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar dark class="primary">
@@ -20,8 +26,10 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.link">
-          <v-icon left dark>{{ item.icon }}</v-icon>
-          {{ item.title }}
+          <v-icon left dark>{{ item.icon }}</v-icon> {{ item.title }}
+        </v-btn>
+        <v-btn v-if="authCheck" flat @click="onClickSignout">
+          <v-icon left dark>exit_to_app</v-icon> Sign out
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -32,7 +40,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import menu from './utils/menu'
 
   export default {
@@ -45,6 +53,12 @@
       ...mapGetters(['authCheck']),
       menuItems () {
         return (this.authCheck ? menu.auth : menu.guest)
+      }
+    },
+    methods: {
+      ...mapActions(['firebaseSignout']),
+      onClickSignout () {
+        this.firebaseSignout()
       }
     }
   }

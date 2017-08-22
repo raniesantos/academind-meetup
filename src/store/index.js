@@ -4,26 +4,16 @@ import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
+/*
+New York image
+http://lorempixel.com/1200/600/city/2/
+Paris image
+http://edoecohen.com/countries/app/images/capitals/paris.jpeg
+*/
+
 export default new Vuex.Store({
   state: {
-    loadedMeetups: [
-      {
-        imageUrl: 'http://www.itowns-project.org/images/sample_itowns.jpg',
-        id: 'sadghjkl',
-        title: 'meetup here',
-        date: new Date(),
-        location: 'New York',
-        description: 'Lorem ipsum dolor sit amet.'
-      },
-      {
-        imageUrl: 'http://spotify.github.io/HubFramework/resources/getting-started-tokyo.jpg',
-        id: '37689',
-        title: 'meetup there',
-        date: new Date(),
-        location: 'Paris',
-        description: 'Consectetur adipisicing elit velit, quasi!'
-      }
-    ],
+    loadedMeetups: [],
     user: null,
     loading: false,
     error: null
@@ -81,7 +71,8 @@ export default new Vuex.Store({
               title: obj[key].title,
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
-              date: obj[key].date
+              date: obj[key].date,
+              userId: obj[key].userId
             })
           }
           commit('setLoadedMeetups', meetups)
@@ -92,13 +83,14 @@ export default new Vuex.Store({
           commit('setLoading', false)
         })
     },
-    createMeetup ({commit}, payload) {
+    createMeetup ({commit, state}, payload) {
       const meetup = {
         title: payload.title,
         location: payload.location,
         imageUrl: payload.imageUrl,
         description: payload.description,
-        date: payload.date.toISOString()
+        date: payload.date.toISOString(),
+        userId: state.user.id
       }
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
@@ -147,6 +139,13 @@ export default new Vuex.Store({
           commit('setError', error)
           console.log(error)
         })
+    },
+    autoSignin ({commit}, payload) {
+      commit('setUser', { id: payload.uid, registeredMeetups: [] })
+    },
+    firebaseSignout ({commit}) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     },
     clearError ({commit}) {
       commit('clearError')
