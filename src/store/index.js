@@ -9,6 +9,8 @@ New York image
 http://lorempixel.com/1200/600/city/2/
 Paris image
 http://edoecohen.com/countries/app/images/capitals/paris.jpeg
+San Francisco
+http://lorempixel.com/1200/600/city/9/
 */
 
 export default new Vuex.Store({
@@ -87,16 +89,30 @@ export default new Vuex.Store({
       const meetup = {
         title: payload.title,
         location: payload.location,
-        imageUrl: payload.imageUrl,
         description: payload.description,
         date: payload.date.toISOString(),
         userId: state.user.id
       }
+      let imageUrl
+      let key
       firebase.database().ref('meetups').push(meetup)
         .then((data) => {
-          const key = data.key
+          key = data.key
+          return key
+        })
+        .then((key) => {
+          const filename = payload.image.name
+          const ext = filename.slice(filename.lastIndexOf('.'))
+          return firebase.storage().ref('meetups/' + key + '.' + ext).put(payload.image)
+        })
+        .then((fileData) => {
+          imageUrl = fileData.metadata.downloadURLs[0]
+          return firebase.database().ref('meetups').child(key).update({ imageUrl: imageUrl })
+        })
+        .then(() => {
           commit('createMeetup', {
             ...meetup,
+            imageUrl: imageUrl,
             id: key
           })
         })
