@@ -5,6 +5,10 @@
         <v-card>
           <v-card-title>
             <h6 class="primary--text">{{ meetup.title }}</h6>
+            <template v-if="authUserOwnsMeetup">
+              <v-spacer></v-spacer>
+              <meetup-edit-modal></meetup-edit-modal>
+            </template>
           </v-card-title>
           <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>
           <v-card-text>
@@ -22,11 +26,21 @@
 </template>
 
 <script>
+  import { mapState, mapGetters } from 'vuex'
+
   export default {
     props: ['id'],
     computed: {
+      ...mapState(['user']),
+      ...mapGetters(['authCheck', 'loadedMeetup']),
       meetup () {
-        return this.$store.getters.loadedMeetup(this.id)
+        return this.loadedMeetup(this.id)
+      },
+      authUserOwnsMeetup () {
+        if (!this.authCheck) {
+          return false
+        }
+        return this.user.id === this.meetup.userId
       }
     }
   }

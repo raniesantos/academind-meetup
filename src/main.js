@@ -6,12 +6,14 @@ import router from './router'
 import store from './store'
 import DateFilter from './filters/date'
 import AlertCmp from './components/Shared/Alert'
+import MeetupEditModal from './components/Meetup/EditModal'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.component('app-alert', AlertCmp)
+Vue.component('meetup-edit-modal', MeetupEditModal)
 
 /* eslint-disable no-new */
 new Vue({
