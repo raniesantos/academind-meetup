@@ -40,28 +40,28 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
-  import menu from './utils/menu'
+  import { mapGetters, mapActions } from 'vuex';
+  import menu from './utils/menu';
 
   export default {
     data () {
       return {
         sideNav: false
-      }
+      };
     },
     computed: {
       ...mapGetters(['authCheck']),
       menuItems () {
-        return (this.authCheck ? menu.auth : menu.guest)
+        return (this.authCheck ? menu.auth : menu.guest);
       }
     },
     methods: {
       ...mapActions(['firebaseSignout']),
       onClickSignout () {
-        this.firebaseSignout()
+        this.firebaseSignout();
       }
     }
-  }
+  };
 </script>
 
 <style lang="stylus">

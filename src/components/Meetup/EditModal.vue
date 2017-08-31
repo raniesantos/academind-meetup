@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions } from 'vuex';
 
   export default {
     props: ['meetup'],
@@ -43,21 +43,21 @@
         editDialog: false,
         newTitle: this.meetup.title,
         newDescription: this.meetup.description
-      }
+      };
     },
     methods: {
       ...mapActions(['updateMeetup']),
       onClickSave () {
         if (this.newTitle.trim() === '' || this.newDescription.trim() === '') {
-          return
+          return;
         }
-        this.editDialog = false
+        this.editDialog = false;
         this.updateMeetup({
           id: this.meetup.id,
           title: this.newTitle,
           description: this.newDescription
-        })
+        });
       }
     }
-  }
+  };
 </script>

@@ -45,14 +45,14 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     data () {
       return {
         email: '',
         password: ''
-      }
+      };
     },
     computed: {
       ...mapState(['user', 'error', 'loading'])
@@ -60,18 +60,18 @@
     methods: {
       ...mapActions(['firebaseSignin', 'clearError']),
       onSubmitSignin () {
-        this.firebaseSignin({ email: this.email, password: this.password })
+        this.firebaseSignin({ email: this.email, password: this.password });
       },
       onDismissed () {
-        this.clearError()
+        this.clearError();
       }
     },
     watch: {
       user (value) {
         if (value !== null && value !== undefined) {
-          this.$router.push('/')
+          this.$router.push('/');
         }
       }
     }
-  }
+  };
 </script>

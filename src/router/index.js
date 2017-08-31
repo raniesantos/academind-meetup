@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import AuthGuard from './auth-guard'
+import Vue from 'vue';
+import Router from 'vue-router';
+import AuthGuard from './auth-guard';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -40,4 +40,4 @@ export default new Router({
     }
   ],
   mode: 'history'
-})
+});

@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     data () {
@@ -59,29 +59,29 @@
         email: '',
         password: '',
         confirm: ''
-      }
+      };
     },
     computed: {
       ...mapState(['user', 'error', 'loading']),
       comparePasswords () {
-        return (this.password !== this.confirm ? 'Passwords do not match' : '')
+        return (this.password !== this.confirm ? 'Passwords do not match' : '');
       }
     },
     methods: {
       ...mapActions(['firebaseSignup', 'clearError']),
       onSubmitSignup () {
-        this.firebaseSignup({ email: this.email, password: this.password })
+        this.firebaseSignup({ email: this.email, password: this.password });
       },
       onDismissed () {
-        this.clearError()
+        this.clearError();
       }
     },
     watch: {
       user (value) {
         if (value !== null && value !== undefined) {
-          this.$router.push('/')
+          this.$router.push('/');
         }
       }
     }
-  }
+  };
 </script>

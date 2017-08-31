@@ -73,7 +73,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapActions } from 'vuex';
 
   export default {
     data () {
@@ -85,16 +85,16 @@
         date: new Date(),
         time: new Date(),
         image: null
-      }
+      };
     },
     methods: {
       ...mapActions(['createMeetup']),
       onSubmitCreate () {
         if (!this.formIsValid) {
-          return
+          return;
         }
         if (!this.image) {
-          return
+          return;
         }
         const meetupData = {
           title: this.title,
@@ -102,25 +102,25 @@
           image: this.image,
           description: this.description,
           date: this.submittableDateTime
-        }
-        this.createMeetup(meetupData)
-        this.$router.push('/meetups')
+        };
+        this.createMeetup(meetupData);
+        this.$router.push('/meetups');
       },
       onClickUpload () {
-        this.$refs.fileInput.click()
+        this.$refs.fileInput.click();
       },
       onChangeFile (event) {
-        const files = event.target.files
-        let filename = files[0].name
+        const files = event.target.files;
+        let filename = files[0].name;
         if (filename.lastIndexOf('.') <= 0) {
-          return alert('Please add a valid file.')
+          return alert('Please add a valid file.');
         }
-        const fileReader = new FileReader()
+        const fileReader = new FileReader();
         fileReader.addEventListener('load', () => {
-          this.imageUrl = fileReader.result
-        })
-        fileReader.readAsDataURL(files[0])
-        this.image = files[0]
+          this.imageUrl = fileReader.result;
+        });
+        fileReader.readAsDataURL(files[0]);
+        this.image = files[0];
       }
     },
     computed: {
@@ -130,17 +130,17 @@
           this.location !== '' &&
           this.imageUrl !== '' &&
           this.description !== ''
-        )
+        );
       },
       submittableDateTime () {
-        const date = new Date(this.date)
-        const timeIsString = (typeof this.time === 'string')
-        const hours = (timeIsString ? this.time.match(/^(\d+)/)[1] : this.time.getHours())
-        const minutes = (timeIsString ? this.time.match(/:(\d+)/)[1] : this.time.getMinutes())
-        date.setHours(hours)
-        date.setMinutes(minutes)
-        return date
+        const date = new Date(this.date);
+        const timeIsString = (typeof this.time === 'string');
+        const hours = (timeIsString ? this.time.match(/^(\d+)/)[1] : this.time.getHours());
+        const minutes = (timeIsString ? this.time.match(/:(\d+)/)[1] : this.time.getMinutes());
+        date.setHours(hours);
+        date.setMinutes(minutes);
+        return date;
       }
     }
-  }
+  };
 </script>

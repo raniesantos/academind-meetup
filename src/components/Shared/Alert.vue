@@ -9,8 +9,8 @@
     props: ['text'],
     methods: {
       onClose () {
-        this.$emit('dismissed')
+        this.$emit('dismissed');
       }
     }
-  }
+  };
 </script>

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState, mapGetters } from 'vuex';
 
   export default {
     props: ['id'],
@@ -39,14 +39,14 @@
       ...mapState(['user', 'loading']),
       ...mapGetters(['authCheck', 'loadedMeetup']),
       meetup () {
-        return this.loadedMeetup(this.id)
+        return this.loadedMeetup(this.id);
       },
       authUserOwnsMeetup () {
         if (!this.authCheck) {
-          return false
+          return false;
         }
-        return this.user.id === this.meetup.userId
+        return this.user.id === this.meetup.userId;
       }
     }
-  }
+  };
 </script>
