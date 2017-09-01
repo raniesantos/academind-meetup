@@ -12,12 +12,16 @@
             <h6 class="primary--text">{{ meetup.title }}</h6>
             <template v-if="authUserOwnsMeetup">
               <v-spacer></v-spacer>
-              <meetup-edit-modal :meetup="meetup"></meetup-edit-modal>
+              <meetup-edit-info :meetup="meetup"></meetup-edit-info>
             </template>
           </v-card-title>
           <v-card-media :src="meetup.imageUrl" height="400px"></v-card-media>
           <v-card-text>
             <div class="info--text">{{ meetup.date | date }} - {{ meetup.location }}</div>
+            <div v-if="authUserOwnsMeetup">
+              <meetup-edit-date :meetup="meetup"></meetup-edit-date>
+              <meetup-edit-time :meetup="meetup"></meetup-edit-time>
+            </div>
             <div>{{ meetup.description }}</div>
           </v-card-text>
           <v-card-actions>

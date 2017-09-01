@@ -6,14 +6,18 @@ import router from './router';
 import store from './store';
 import DateFilter from './filters/date';
 import AlertCmp from './components/Shared/Alert';
-import MeetupEditModal from './components/Meetup/EditModal';
+import MeetupEditInfo from './components/Meetup/EditInfo';
+import MeetupEditDate from './components/Meetup/EditDate';
+import MeetupEditTime from './components/Meetup/EditTime';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;
 
 Vue.filter('date', DateFilter);
 Vue.component('app-alert', AlertCmp);
-Vue.component('meetup-edit-modal', MeetupEditModal);
+Vue.component('meetup-edit-info', MeetupEditInfo);
+Vue.component('meetup-edit-date', MeetupEditDate);
+Vue.component('meetup-edit-time', MeetupEditTime);
 
 /* eslint-disable no-new */
 new Vue({
