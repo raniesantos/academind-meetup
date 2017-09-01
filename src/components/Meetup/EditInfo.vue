@@ -51,7 +51,6 @@
         if (this.newTitle.trim() === '' || this.newDescription.trim() === '') {
           return;
         }
-        this.editDialog = false;
         this.updateMeetup({
           id: this.meetup.id,
           title: this.newTitle,
