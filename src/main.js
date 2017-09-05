@@ -9,6 +9,7 @@ import AlertCmp from './components/Shared/Alert';
 import MeetupEditInfo from './components/Meetup/EditInfo';
 import MeetupEditDate from './components/Meetup/EditDate';
 import MeetupEditTime from './components/Meetup/EditTime';
+import MeetupRegister from './components/Meetup/Registration/Register';
 
 Vue.use(Vuetify);
 Vue.config.productionTip = false;
@@ -18,6 +19,7 @@ Vue.component('app-alert', AlertCmp);
 Vue.component('meetup-edit-info', MeetupEditInfo);
 Vue.component('meetup-edit-date', MeetupEditDate);
 Vue.component('meetup-edit-time', MeetupEditTime);
+Vue.component('meetup-register', MeetupRegister);
 
 /* eslint-disable no-new */
 new Vue({
